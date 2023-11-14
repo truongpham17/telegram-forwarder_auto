@@ -38,7 +38,7 @@ except Exception as ap:
 
 
 
-@client.on(events.NewMessage(incoming=False, chats=FROM))
+@client.on(events.NewMessage(incoming=True, chats=FROM))
 async def sender_bH(event):
     print("receive message")
     try:

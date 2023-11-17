@@ -27,7 +27,6 @@ FROM_ = config("FROM_CHANNEL")
 TO_ = config("TO_CHANNEL")
 
 FROM = [int(i) for i in FROM_.split()]
-# TO = [int(i) for i in TO_.split()]
 
 try:
     client = TelegramClient(SESSION, APP_ID, API_HASH)
@@ -38,11 +37,13 @@ except Exception as ap:
 
 
 
-@client.on(events.NewMessage(incoming=True, chats=FROM))
+print("hell")
+@client.on(events.NewMessage(incoming=False, chats=FROM))
 async def sender_bH(event):
-    print("receive message")
     try:
-        await client.send_message('@trading_signal_bot', event.message)
+        if ("new trade" in str.lower(event.message.message)):
+            await client.send_message('@trading_signal_bot', event.message)
+
     except Exception as e:
         print(e)
 

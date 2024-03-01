@@ -41,8 +41,7 @@ print("hell")
 @client.on(events.NewMessage(incoming=True, chats=FROM))
 async def sender_bH(event):
     try:
-        if ("new trade" in str.lower(event.message.message)):
-            await client.send_message('@trading_signal_bot', event.message)
+        await client.send_message('@trading_signal_bot', event.message)
 
     except Exception as e:
         print(e)

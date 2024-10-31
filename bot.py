@@ -17,8 +17,6 @@ import logging
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
 
-print("Starting...")
-
 # Basics
 APP_ID = config("APP_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
@@ -27,17 +25,16 @@ FROM_ = config("FROM_CHANNEL")
 TO_ = config("TO_CHANNEL")
 
 FROM = [int(i) for i in FROM_.split()]
-
 try:
     client = TelegramClient(SESSION, APP_ID, API_HASH)
     client.start()
+    
 except Exception as ap:
     print(f"ERROR - {ap}")
     exit(1)
 
 
 
-print("hell")
 @client.on(events.NewMessage(incoming=True, chats=FROM))
 async def sender_bH(event):
     try:

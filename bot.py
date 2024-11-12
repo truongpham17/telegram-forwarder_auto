@@ -13,9 +13,13 @@
 
 from telethon import TelegramClient, events
 from decouple import config
+import requests
 import logging
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
+
+
+PORTS = [3000, 3001]
 
 # Basics
 APP_ID = config("APP_ID", default=None, cast=int)
@@ -39,7 +43,16 @@ except Exception as ap:
 async def sender_bH(event):
     try:
         await client.send_message('@trading_signal_bot', event.message)
-
+        try:
+            message = event.message.text or event.message.caption
+            for port in PORTS:
+                url = 'http://localhost:' + port + '/signal'
+                data = {
+                    message
+                }
+                requests.post(url, json=data)
+        except e:
+            print(e)
     except Exception as e:
         print(e)
 

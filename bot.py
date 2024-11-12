@@ -38,7 +38,6 @@ except Exception as ap:
     exit(1)
 
 
-
 @client.on(events.NewMessage(incoming=True, chats=FROM))
 async def sender_bH(event):
     try:
@@ -46,7 +45,7 @@ async def sender_bH(event):
         try:
             message = event.message.text or event.message.caption
             for port in PORTS:
-                url = 'http://localhost:' + port + '/signal'
+                url = 'http://localhost:' + str(port) + '/signal'
                 data = {
                     message
                 }

@@ -42,16 +42,17 @@ except Exception as ap:
 async def sender_bH(event):
     try:
         await client.send_message('@trading_signal_bot', event.message)
-        try:
-            message = event.message.text or event.message.caption
-            for port in PORTS:
-                url = 'http://localhost:' + str(port) + '/signal'
-                data = {
-                    message
-                }
+        message = event.message.text or event.message.caption
+        for port in PORTS:
+            url = 'http://localhost:' + str(port) + '/signal'
+            data = {
+                'message': message
+            }
+            
+            try:
                 requests.post(url, json=data)
-        except e:
-            print(e)
+            except Exception as inner_e:
+                print(inner_e)
     except Exception as e:
         print(e)
 

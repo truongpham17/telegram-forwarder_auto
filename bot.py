@@ -13,7 +13,6 @@
 
 from telethon import TelegramClient, events
 from decouple import config
-import listener
 import requests
 import logging
 
@@ -21,6 +20,7 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 
 
 PORTS = [3000, 3001]
+print('come here')
 
 # Basics
 APP_ID = config("APP_ID", default=None, cast=int)

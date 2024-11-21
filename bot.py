@@ -41,7 +41,7 @@ except Exception as ap:
 @client.on(events.NewMessage(incoming=True, chats=FROM))
 async def sender_bH(event):
     try:
-        await client.send_message('@trading_signal_bot', event.message)
+        # await client.send_message('@trading_signal_bot', event.message)
         message = event.message.text or event.message.caption
         for port in PORTS:
             url = 'http://localhost:' + str(port) + '/signal'

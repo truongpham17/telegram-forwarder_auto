@@ -6,6 +6,7 @@ from telegram import Bot
 import requests
 
 USER = config("TWITTER_USER")
+print(USER)
 PASS = config("TWITTER_PASS")
 SEARCH_TERM = "from:CryptoBheem"
 INTERVAL = 5 * 60
@@ -18,7 +19,7 @@ tele_bot = Bot(BOT_TOKEN)
 
 async def main():
     app = TwitterAsync("session")
-    await app.sign_in(USER, PASS)
+    # await app.sign_in(USER, PASS)
 
     last_tweet_ids = []
 

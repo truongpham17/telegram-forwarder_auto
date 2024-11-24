@@ -5,9 +5,7 @@ from decouple import config
 from telegram import Bot
 import requests
 
-USER = config("TWITTER_USER")
-print(USER)
-PASS = config("TWITTER_PASS")
+AUTH=config("TWITTER_AUTH_TOKEN")
 SEARCH_TERM = "from:CryptoBheem"
 INTERVAL = 5 * 60
 BOT_TOKEN = config("TWITTER_TELE_BOT_TOKEN")
@@ -19,8 +17,7 @@ tele_bot = Bot(BOT_TOKEN)
 
 async def main():
     app = TwitterAsync("session")
-    # await app.sign_in(USER, PASS)
-
+    await app.load_auth_token(AUTH)
     last_tweet_ids = []
 
     while True:

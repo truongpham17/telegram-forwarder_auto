@@ -1,4 +1,5 @@
 from tweety import TwitterAsync
+from tweety.filters import SearchFilters
 import asyncio
 from decouple import config
 from telegram import Bot
@@ -6,7 +7,7 @@ import requests
 
 USER = config("TWITTER_USER")
 PASS = config("TWITTER_PASS")
-SEARCH_TERM = "CryptoBheem"
+SEARCH_TERM = "from:CryptoBheem"
 INTERVAL = 5 * 60
 BOT_TOKEN = config("TWITTER_TELE_BOT_TOKEN")
 CHAT_ID=config("CHAT_ID")
@@ -22,7 +23,7 @@ async def main():
     last_tweet_ids = []
 
     while True:
-        all_tweets = await app.search(SEARCH_TERM)
+        all_tweets = await app.search(SEARCH_TERM, filter_= SearchFilters.Latest)
         current_tweet_ids = [tweet.id for tweet in all_tweets]
         if len(last_tweet_ids) == 0:
           last_tweet_ids = current_tweet_ids

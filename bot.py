@@ -19,7 +19,7 @@ import logging
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
 
 
-PORTS = [3001]
+PORTS = [3000]
 print('come here')
 
 # Basics

@@ -5,7 +5,7 @@ import requests
 from decouple import config
 BOT_TOKEN = config("TELE_BOT_TOKEN")
 
-PORTS = [3001]
+PORTS = [3000]
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print('come here')

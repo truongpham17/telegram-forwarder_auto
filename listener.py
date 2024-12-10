@@ -13,16 +13,15 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text
-    if(text.startswith('..')):
-      for port in PORTS:
-            url = 'http://localhost:' + str(port) + '/signal'
-            data = {
-                'message': text
-            }
-            try:
-                requests.post(url, json=data)
-            except Exception as inner_e:
-                print(inner_e)
+    for port in PORTS:
+        url = 'http://localhost:' + str(port) + '/signal'
+        data = {
+            'message': text
+        }
+        try:
+            requests.post(url, json=data)
+        except Exception as inner_e:
+            print(inner_e)
 
 app = ApplicationBuilder().token(BOT_TOKEN).build()
 

@@ -1,5 +1,6 @@
 from telethon import TelegramClient, events
 from decouple import config
+import requests
 
 
 APP_ID = config("APP_ID", default=None, cast=int)
@@ -9,12 +10,18 @@ FROM_ = config("FROM_CHANNEL")
 TO_ = config("TO_CHANNEL")
 
 client = TelegramClient(SESSION, APP_ID, API_HASH)
+NODE_ENDPOINT = 'http://localhost:3000/trade-signal'
 
 async def handler(event):
-    # Forward message to your bot chat
+    message = event.message.message
+    print("Forwarding message:", message)
+
+    try:
+        requests.post(NODE_ENDPOINT, json={"message": message})
+    except Exception as e:
+        print("Error forwarding:", e)
     await client.send_message(TO_, event.message)
 
 print("Bot is running...")
 client.start()
 client.run_until_disconnected()
-

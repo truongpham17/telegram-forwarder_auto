@@ -5,7 +5,7 @@ import requests
 APP_ID = config("APP_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
 SESSION = config("SESSION")
-FROM_ = config("FROM_CHANNEL")
+FROM_ = int(config("FROM_CHANNEL"))
 TO_ = config("TO_CHANNEL")
 
 client = TelegramClient(SESSION, APP_ID, API_HASH)

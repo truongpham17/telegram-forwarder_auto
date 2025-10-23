@@ -18,7 +18,7 @@ import logging
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
 
-PORTS = [3000, 3001]
+PORTS = [3000]
 
 # Basics
 APP_ID = config("APP_ID", default=None, cast=int)
@@ -47,7 +47,6 @@ async def sender_bH(event):
             data = {
                 'message': message
             }
-            
             try:
                 requests.post(url, json=data)
             except Exception as inner_e:

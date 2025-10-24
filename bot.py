@@ -3,7 +3,11 @@ from decouple import config
 import requests
 import logging
 
-logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s', level=logging.WARNING)
+logging.basicConfig(
+    format='[%(levelname)5s/%(asctime)s] %(name)s: %(message)s',
+    level=logging.INFO
+)
+
 
 PORTS = [3000]
 
@@ -20,6 +24,10 @@ try:
 except Exception as ap:
     print(f"ERROR - {ap}")
     exit(1)
+    
+channel = client.loop.run_until_complete(client.get_entity(FROM_))
+print(f"Title: {channel.title}")
+print(f"ID: {channel.id}")
 
 
 @client.on(events.NewMessage(chats=FROM_))
@@ -40,5 +48,5 @@ async def sender_bH(event):
     except Exception as e:
         print(e)
 
-print("Bot has started.")
+# print("Bot has started.")
 client.run_until_disconnected()

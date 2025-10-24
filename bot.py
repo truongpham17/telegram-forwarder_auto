@@ -44,6 +44,7 @@ async def sender_bH(event):
         message = event.message.text or event.message.caption
         for port in PORTS:
             url = 'http://localhost:' + str(port) + '/signal'
+            print(message)
             data = {
                 'message': message
             }

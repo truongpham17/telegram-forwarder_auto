@@ -28,21 +28,22 @@ except Exception as ap:
 channel = client.loop.run_until_complete(client.get_entity(FROM_))
 print(f"Title: {channel.title}")
 print(f"ID: {channel.id}")
-@client.on(events.NewMessage(chats=channel))
+@client.on(events.NewMessage())
 async def sender_bH(event):
     try:
         # await client.send_message('@trading_signal_bot', event.message)
         message = event.message.text or event.message.caption
-        for port in PORTS:
-            url = 'http://localhost:' + str(port) + '/signal'
-            print(message)
-            data = {
-                'message': message
-            }
-            try:
-                requests.post(url, json=data)
-            except Exception as inner_e:
-                print(inner_e)
+        print(message)
+        # for port in PORTS:
+        #     url = 'http://localhost:' + str(port) + '/signal'
+        #     print(message)
+        #     data = {
+        #         'message': message
+        #     }
+        #     try:
+        #         requests.post(url, json=data)
+        #     except Exception as inner_e:
+        #         print(inner_e)
     except Exception as e:
         print(e)
 

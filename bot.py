@@ -30,7 +30,7 @@ print(f"Title: {channel.title}")
 print(f"ID: {channel.id}")
 
 
-@client.on(events.NewMessage(chats=FROM_))
+@client.on(events.NewMessage())
 async def sender_bH(event):
     try:
         # await client.send_message('@trading_signal_bot', event.message)

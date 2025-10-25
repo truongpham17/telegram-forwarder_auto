@@ -32,6 +32,7 @@ print(f"ID: {getattr(channel, 'id', None)}", flush=True)
 def post_to_local(message: str):
       url = f'http://localhost:3000/signal'
       try:
+          print(message, flush=True)
           requests.post(url, json={'message': message or ""}, timeout=5)
       except Exception as e:
           print(f"[POST ERROR] {e}", flush=True)
